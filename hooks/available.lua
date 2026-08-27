@@ -1,133 +1,49 @@
 --- Return all available versions provided by this plugin
 --- @param ctx table Empty table used as context, for future extension
 --- @return table Descriptions of available versions and accompanying tool descriptions
+
+local http = require("http")
+local URL = "https://releases.rs/"
+
 function PLUGIN:Available(ctx)
-    return {
-        {version = "1.90.0", note = "latest", addition = {}},
-        {version = "1.89.0", note = "", addition = {}},
-        {version = "1.88.0", note = "", addition = {}},
-        {version = "1.87.0", note = "", addition = {}},
-        {version = "1.86.0", note = "", addition = {}},
-        {version = "1.85.1", note = "", addition = {}},
-        {version = "1.85.0", note = "", addition = {}},
-        {version = "1.84.1", note = "", addition = {}},
-        {version = "1.84.0", note = "", addition = {}},
-        {version = "1.83.0", note = "", addition = {}},
-        {version = "1.82.0", note = "", addition = {}},
-        {version = "1.81.0", note = "", addition = {}},
-        {version = "1.80.1", note = "", addition = {}},
-        {version = "1.80.0", note = "", addition = {}},
-        {version = "1.79.0", note = "", addition = {}},
-        {version = "1.78.0", note = "", addition = {}},
-        {version = "1.77.2", note = "", addition = {}},
-        {version = "1.77.1", note = "", addition = {}},
-        {version = "1.77.0", note = "", addition = {}},
-        {version = "1.76.0", note = "", addition = {}},
-        {version = "1.75.0", note = "", addition = {}},
-        {version = "1.74.1", note = "", addition = {}},
-        {version = "1.74.0", note = "", addition = {}},
-        {version = "1.73.0", note = "", addition = {}},
-        {version = "1.72.1", note = "", addition = {}},
-        {version = "1.72.0", note = "", addition = {}},
-        {version = "1.71.1", note = "", addition = {}},
-        {version = "1.71.0", note = "", addition = {}},
-        {version = "1.70.0", note = "", addition = {}},
-        {version = "1.69.0", note = "", addition = {}},
-        {version = "1.68.2", note = "", addition = {}},
-        {version = "1.68.1", note = "", addition = {}},
-        {version = "1.68.0", note = "", addition = {}},
-        {version = "1.67.1", note = "", addition = {}},
-        {version = "1.67.0", note = "", addition = {}},
-        {version = "1.66.1", note = "", addition = {}},
-        {version = "1.66.0", note = "", addition = {}},
-        {version = "1.65.0", note = "", addition = {}},
-        {version = "1.64.0", note = "", addition = {}},
-        {version = "1.63.0", note = "", addition = {}},
-        {version = "1.62.1", note = "", addition = {}},
-        {version = "1.62.0", note = "", addition = {}},
-        {version = "1.61.0", note = "", addition = {}},
-        {version = "1.60.0", note = "", addition = {}},
-        {version = "1.59.0", note = "", addition = {}},
-        {version = "1.58.1", note = "", addition = {}},
-        {version = "1.58.0", note = "", addition = {}},
-        {version = "1.57.0", note = "", addition = {}},
-        {version = "1.56.1", note = "", addition = {}},
-        {version = "1.56.0", note = "", addition = {}},
-        {version = "1.55.0", note = "", addition = {}},
-        {version = "1.54.0", note = "", addition = {}},
-        {version = "1.53.0", note = "", addition = {}},
-        {version = "1.52.1", note = "", addition = {}},
-        {version = "1.52.0", note = "", addition = {}},
-        {version = "1.51.0", note = "", addition = {}},
-        {version = "1.50.0", note = "", addition = {}},
-        {version = "1.49.0", note = "", addition = {}},
-        {version = "1.48.0", note = "", addition = {}},
-        {version = "1.47.0", note = "", addition = {}},
-        {version = "1.46.0", note = "", addition = {}},
-        {version = "1.45.2", note = "", addition = {}},
-        {version = "1.45.1", note = "", addition = {}},
-        {version = "1.45.0", note = "", addition = {}},
-        {version = "1.44.1", note = "", addition = {}},
-        {version = "1.44.0", note = "", addition = {}},
-        {version = "1.43.1", note = "", addition = {}},
-        {version = "1.43.0", note = "", addition = {}},
-        {version = "1.42.0", note = "", addition = {}},
-        {version = "1.41.1", note = "", addition = {}},
-        {version = "1.41.0", note = "", addition = {}},
-        {version = "1.40.0", note = "", addition = {}},
-        {version = "1.39.0", note = "", addition = {}},
-        {version = "1.38.0", note = "", addition = {}},
-        {version = "1.37.0", note = "", addition = {}},
-        {version = "1.36.0", note = "", addition = {}},
-        {version = "1.35.0", note = "", addition = {}},
-        {version = "1.34.2", note = "", addition = {}},
-        {version = "1.34.1", note = "", addition = {}},
-        {version = "1.34.0", note = "", addition = {}},
-        {version = "1.33.0", note = "", addition = {}},
-        {version = "1.32.0", note = "", addition = {}},
-        {version = "1.31.1", note = "", addition = {}},
-        {version = "1.31.0", note = "", addition = {}},
-        {version = "1.30.1", note = "", addition = {}},
-        {version = "1.30.0", note = "", addition = {}},
-        {version = "1.29.2", note = "", addition = {}},
-        {version = "1.29.1", note = "", addition = {}},
-        {version = "1.29.0", note = "", addition = {}},
-        {version = "1.28.0", note = "", addition = {}},
-        {version = "1.27.2", note = "", addition = {}},
-        {version = "1.27.1", note = "", addition = {}},
-        {version = "1.27.0", note = "", addition = {}},
-        {version = "1.26.2", note = "", addition = {}},
-        {version = "1.26.1", note = "", addition = {}},
-        {version = "1.26.0", note = "", addition = {}},
-        {version = "1.25.0", note = "", addition = {}},
-        {version = "1.24.1", note = "", addition = {}},
-        {version = "1.24.0", note = "", addition = {}},
-        {version = "1.23.0", note = "", addition = {}},
-        {version = "1.22.1", note = "", addition = {}},
-        {version = "1.22.0", note = "", addition = {}},
-        {version = "1.21.0", note = "", addition = {}},
-        {version = "1.20.0", note = "", addition = {}},
-        {version = "1.19.0", note = "", addition = {}},
-        {version = "1.18.0", note = "", addition = {}},
-        {version = "1.17.0", note = "", addition = {}},
-        {version = "1.16.0", note = "", addition = {}},
-        {version = "1.15.1", note = "", addition = {}},
-        {version = "1.15.0", note = "", addition = {}},
-        {version = "1.14.0", note = "", addition = {}},
-        {version = "1.13.0", note = "", addition = {}},
-        {version = "1.12.1", note = "", addition = {}},
-        {version = "1.12.0", note = "", addition = {}},
-        {version = "1.11.0", note = "", addition = {}},
-        {version = "1.10.0", note = "", addition = {}},
-        {version = "1.9.0", note = "", addition = {}},
-        {version = "1.8.0", note = "", addition = {}},
-        {version = "1.7.0", note = "", addition = {}},
-        {version = "1.6.0", note = "", addition = {}},
-        {version = "1.5.0", note = "", addition = {}},
-        {version = "1.4.0", note = "", addition = {}},
-        {version = "1.3.0", note = "", addition = {}},
-        {version = "1.2.0", note = "", addition = {}},
-        {version = "1.1.0", note = "", addition = {}},
-        {version = "1.0.0", note = "", addition = {}}
-    }
+
+    --- fetch from https://releases.rs/
+    local resp, err = http.get({
+        url = URL
+    })
+    if err ~= nil then
+        error("Failed to fetch rust release info: " .. err)
+    end
+    if resp.status_code ~= 200 then
+        error("Failed to fetch rust release info: status_code => " .. resp.status_code)
+    end
+
+    --- Current stable release, from the "Rust Versions" section:
+    ---   Stable: <a href=/docs/1.98.0>1.98.0</a>
+    local stable = resp.body:match("Stable:%s*<a href=/docs/([%d%.]+)>")
+    if stable == nil then
+        error("Failed to parse stable rust version from " .. URL)
+    end
+
+    --- Sidebar links look like: <a href=/docs/1.98.0/>1.98.0</a>
+    --- The list is newest-first but includes beta/nightly above stable;
+    --- skip everything until the stable release so pre-releases (which
+    --- have no tarball on static.rust-lang.org/dist) are never offered.
+    local versions = {}
+    local found_stable = false
+    for version in resp.body:gmatch("/docs/([%w%.%-]+)/") do
+        if version == stable then
+            found_stable = true
+        end
+        if found_stable and version:match("^1%.%d+%.%d+$") then
+            local note = (version == stable) and "latest" or ""
+            table.insert(versions, {version = version, note = note, addition = {}})
+        end
+    end
+
+    if #versions == 0 then
+        error("Failed to parse rust versions from " .. URL)
+    end
+
+    return versions
 end
