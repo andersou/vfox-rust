@@ -5,8 +5,7 @@
 --- @field ctx.path string SDK installation directory
 function PLUGIN:EnvKeys(ctx)
     local mainPath = ctx.path
-
-    return {
+    local env = {
         {
             key = 'PATH',
             value = mainPath .. "/rustc/bin",
@@ -32,4 +31,15 @@ function PLUGIN:EnvKeys(ctx)
             value = mainPath .. '/cargo'
         }
     }
+
+    if RUNTIME.osType:lower() == "darwin" or RUNTIME.osType:lower() == "macos" then
+        -- rustfmt and clippy are separate component prefixes, while their
+        -- librustc_driver dependency is provided by rustc/lib.
+        table.insert(env, {
+            key = 'DYLD_LIBRARY_PATH',
+            value = mainPath .. '/rustc/lib'
+        })
+    end
+
+    return env
 end
