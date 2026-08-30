@@ -3,7 +3,7 @@ local io = require("io")
 
 local utils = {}
 
-function utils:getPrebuiltVersionUrl(osType, archType, version)
+function utils:getTargetTriple(osType, archType)
     osType = osType:lower()
     archType = archType:lower()
 
@@ -12,7 +12,7 @@ function utils:getPrebuiltVersionUrl(osType, archType, version)
         osType = "pc-windows-msvc"
     elseif osType == "linux" then
         osType = "unknown-linux-gnu"
-    elseif osType == "macos" then
+    elseif osType == "macos" or osType == "darwin" then
         osType = "apple-darwin"
     elseif osType == "freebsd" then
         osType = "unknown-freebsd"
@@ -29,9 +29,11 @@ function utils:getPrebuiltVersionUrl(osType, archType, version)
         archType = "aarch64"
     end
 
-    local url = RUST_URL .. "/rust-" .. version .. "-" .. archType .. "-" .. osType .. ".tar.gz"
+    return archType .. "-" .. osType
+end
 
-    return url
+function utils:getPrebuiltVersionUrl(osType, archType, version)
+    return RUST_URL .. "/rust-" .. version .. "-" .. self:getTargetTriple(osType, archType) .. ".tar.gz"
 end
 
 return utils
