@@ -4,11 +4,14 @@ rust plugin for [vfox](https://vfox.dev/) .
 
 ## Install
 
-After installing [vfox](https://vfox.dev/), install the plugin by running:
+After installing [vfox](https://vfox.dev/), install this plugin from the latest release:
 
 ```
-vfox add --source https://github.com/andersou/vfox-rust/releases/download/manifest/manifest.json rust
+vfox add --source https://github.com/andersou/vfox-rust/releases/download/v1.1.0/vfox-rust-1.1.0.zip rust
 ```
+
+`vfox add rust` pulls the plugin from the public registry, which currently still points at the unmaintained upstream
+repository; a PR to retarget it at this fork is open.
 
 ## Fork notice
 
