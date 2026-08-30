@@ -7,7 +7,7 @@ rust plugin for [vfox](https://vfox.dev/) .
 After installing [vfox](https://vfox.dev/), install this plugin from the latest release:
 
 ```
-vfox add --source https://github.com/andersou/vfox-rust/releases/download/v1.1.0/vfox-rust-1.1.0.zip rust
+vfox add --source https://github.com/andersou/vfox-rust/releases/download/v1.1.1/vfox-rust-1.1.1.zip rust
 ```
 
 `vfox add rust` pulls the plugin from the public registry, which currently still points at the unmaintained upstream
@@ -22,7 +22,9 @@ exists because of that work.
 Changes in this fork:
 
 - macOS support: `RUNTIME.osType` `"darwin"` is mapped to the `apple-darwin` targets.
-- `rust-std` is installed into the `rustc` sysroot, and Rust dylibs are exposed to the other components.
+- Every component payload (`rust-std`, `llvm-tools`, `rust-analysis`, ...) is merged into the `rustc` sysroot, so
+  `rustc` finds `core` and the sysroot helpers (`rust-objcopy`, `llvm-cov`, ...) find `libLLVM`.
+- Rust dylibs are exposed to the other components via `DYLD_LIBRARY_PATH` on macOS.
 - Available versions are fetched dynamically from [releases.rs](https://releases.rs/docs/).
 
 ## License
