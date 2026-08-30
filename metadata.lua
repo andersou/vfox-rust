@@ -5,7 +5,7 @@ PLUGIN = {}
 --- Plugin name
 PLUGIN.name = "rust"
 --- Plugin version
-PLUGIN.version = "1.1.1"
+PLUGIN.version = "1.1.2"
 --- Plugin homepage
 PLUGIN.homepage = "https://github.com/andersou/vfox-rust"
 --- Plugin license, please choose a correct license according to your needs.

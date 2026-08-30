@@ -39,4 +39,20 @@ function PLUGIN:PostInstall(ctx)
     if os.execute(cmd) ~= 0 then
         error("failed to merge rust components into the rustc sysroot")
     end
+
+    -- rustfmt, clippy and rust-analyzer live in their own prefixes but are
+    -- linked against @loader_path/../lib, expecting librustc_driver and
+    -- libLLVM next to them like in a rustup toolchain. Give every component
+    -- prefix a "lib" pointing at the rustc one so the loader finds them
+    -- without polluting the shell with DYLD_LIBRARY_PATH/LD_LIBRARY_PATH.
+    cmd = string.format(
+        'set -e; ' ..
+        'for comp in "%s"/*/; do ' ..
+        'if [ -d "$comp/bin" ] && [ ! -e "$comp/lib" ]; then ln -s ../rustc/lib "$comp/lib"; fi; ' ..
+        'done',
+        path
+    )
+    if os.execute(cmd) ~= 0 then
+        error("failed to link the rustc libraries into the component prefixes")
+    end
 end

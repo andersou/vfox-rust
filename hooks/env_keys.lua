@@ -32,14 +32,5 @@ function PLUGIN:EnvKeys(ctx)
         }
     }
 
-    if RUNTIME.osType:lower() == "darwin" or RUNTIME.osType:lower() == "macos" then
-        -- rustfmt and clippy are separate component prefixes, while their
-        -- librustc_driver dependency is provided by rustc/lib.
-        table.insert(env, {
-            key = 'DYLD_LIBRARY_PATH',
-            value = mainPath .. '/rustc/lib'
-        })
-    end
-
     return env
 end
